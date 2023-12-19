@@ -4,6 +4,7 @@ import Sidebar from './components/sidebar/sidebar';
 import Topbar from './components/topbar/topbar';
 import Navbar from './components/navbar/navbar';
 import LowerBar from './components/lower-bar/lower-bar';
+import Menu from './components/menu/menu';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Navbar />
       <LowerBar />
       <Sidebar />
+      <Menu />
     </div>
   );
 }
