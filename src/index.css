@@ -1,13 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Bigelow+Rules&family=Fira+Sans:wght@400;500;600;700&family=Montserrat&family=Open+Sans:ital@1&family=Playpen+Sans&family=Roboto+Condensed&display=swap');
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--main-dark-bg);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+  /* colors */
+  --main-light: #EA7C69;
+  --main-dark:  #252836;
+  --main-dark-line: #393C49;
+  --main-dark-bg: #2D303E;
+  --main-dark-bg2: #1F1D2B;
+
+  --icon-color: invert(51%) sepia(74%) saturate(434%) hue-rotate(320deg) brightness(102%) contrast(84%);
+  --icon-hover: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+
+  /* font-size */
+  --small-font: 14px;
+
+  /* font-colors */
+  --font-white: #fff;
+  --font-light:  #ABBBC2;
+  --font-lighter: #E0E6E9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Barlow', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.container {
+  max-width: 1024px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.grid {
+  display: grid;
+}
+
+.section {
+  padding-top: 10rem;
+  padding-bottom: 2rem;
 }

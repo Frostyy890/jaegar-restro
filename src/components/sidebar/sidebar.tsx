@@ -1,13 +1,16 @@
 import React from 'react';
-import './sidebar.styles.css';
-import Logo from '../../assets/icons/Restaurant.png'
-import Home from '../../assets/icons/Home.png'
-import Discount from '../../assets/icons/Discount.png'
-import Dashboard from '../../assets/icons/Dashboard.png'
-import Message from '../../assets/icons/Message.png'
-import Notifications from '../../assets/icons/Notification.png'
-import Settings from '../../assets/icons/Setting.png'
-import LogOut from '../../assets/icons/Log Out.png'
+import './sidebar.styles.scss';
+import { Link } from 'react-router-dom';
+
+import Logo from '../../assets/logos/Logo.svg'
+import Home from '../../assets/icons/Home.svg'
+import Discount from '../../assets/icons/Discount.svg'
+import Dashboard from '../../assets/icons/Dashboard.svg'
+import Message from '../../assets/icons/Message.svg'
+import Notifications from '../../assets/icons/Notification.svg'
+import Settings from '../../assets/icons/Setting.svg'
+import LogOut from '../../assets/icons/Log Out.svg'
+
 
 
 const Sidebar = () => {
@@ -19,51 +22,51 @@ const Sidebar = () => {
 
               {/* item 0 */}
               <li className="side-item">
-                <a href="" className="side-link">
+                <Link to="/" className="side-link">
                   <img src={Logo} alt="" />
-                </a>
+                </Link>
               </li>
               {/* item 1 */}
               <li className="side-item">
-                <a href="" className="side-link">
+                <Link to="/" className="side-link">
                   <img src={Home} alt="" />
-                </a>
+                </Link>
               </li>
               {/* item 2 */}
               <li className="side-item">
-                <a href="" className="side-link">
+                <Link to="/discounts" className="side-link">
                   <img src={Discount} alt="" />
-                </a>
+                </Link>
               </li>
               {/* item 3 */}
               <li className="side-item">
-                <a href="" className="side-link">
+                <Link to="/dashboard" className="side-link">
                   <img src={Dashboard} alt="" />
-                </a>
+                </Link>
               </li>
               {/* item 4 */}
               <li className="side-item">
-                <a href="" className="side-link">
+                <Link to="/contacts" className="side-link">
                   <img src={Message} alt="" />
-                </a>
+                </Link>
               </li>
               {/* item 5 */}
               <li className="side-item">
-                <a href="" className="side-link">
+                <Link to="/notifications" className="side-link">
                   <img src={Notifications} alt="" />
-                </a>
+                </Link>
               </li>
               {/* item 6 */}
               <li className="side-item">
-                <a href="" className="side-link">
+                <Link to="/settings" className="side-link">
                   <img src={Settings} alt="" />
-                </a>
+                </Link>
               </li>
               {/* item 7 */}
               <li className="side-item">
-                <a href="" className="side-link">
+                <Link to="/logout" className="side-link">
                   <img src={LogOut} alt="" />
-                </a>
+                </Link>
               </li>
 
             </ul>

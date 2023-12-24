@@ -1,0 +1,22 @@
+.options-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--font-white);
+}
+
+#options {
+    border-radius: 4px;
+    padding: 15px 12px;
+    border-color: var(--main-dark-line);
+    background: var(--main-dark-bg2);
+    color: var(--font-white);
+}
+
+#menu-grid {
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 10px;
+}

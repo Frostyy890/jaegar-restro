@@ -1,31 +1,27 @@
-import React from 'react'
-import './navbar.styles.css'
+import React from 'react';
+import './navbar.styles.scss';
 
-const Navbar = () => {
+interface NavbarProps {
+    categories: string[],
+    onSelectCategory: (category: string) => void;
+}
+
+
+const Navbar: React.FC<NavbarProps> = ({categories, onSelectCategory}) => {
+    const handleClick = (category: string) => {
+        onSelectCategory(category);
+    }
   return (
     <nav id='navbar'>
-      <div className="container">
-        <ul className="nav-list">
-            <li className="nav-item">
-                <a href="" className="nav-link">Hot Dishes</a>
-            </li>
-            <li className="nav-item">
-                <a href="" className="nav-link">Cold Dishes</a>
-            </li>
-            <li className="nav-item">
-                <a href="" className="nav-link">Soup</a>
-            </li>
-            <li className="nav-item">
-                <a href="" className="nav-link">Grill</a>
-            </li>
-            <li className="nav-item">
-                <a href="" className="nav-link">Appetizer</a>
-            </li>
-            <li className="nav-item">
-                <a href="" className="nav-link">Dessert</a>
-            </li>
-        </ul>
-      </div>
+        <div className='nav-container container'>
+            <ul className='nav-list'>
+                {categories.map((category, index)=> (
+                    <li className='nav-item' key={index} onClick={() => handleClick(category)}>
+                        {category}
+                    </li>
+                ) )}
+            </ul>
+        </div>
     </nav>
   )
 }

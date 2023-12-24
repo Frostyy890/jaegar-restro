@@ -1,25 +1,46 @@
 import React, { useEffect, useState } from 'react'
-import './menu.styles.css'
+import './menu.styles.scss'
+import axios from 'axios';
 import MenuItem from '../menu-item/menu-item';
+import { error } from 'console';
 
-const Menu = () => {
-    const [meals, setMeals] = useState([
-      {id: 1, name: "ramen", price: "2$", available: "22"},
-      {id: 2, name: "spicy ramen", price: "2$", available: "22"}
-    ]);
-    // useEffect(() => {
-    //   fetch('http://localhost:8000/dishes')
-    //   .then(res => {
-    //     return res.json();
-    //   }).then((data)=> {
-    //     setMeals(data);
-    //     console.log(data)
-    //   })
-    // }, [])
+interface mealItem {
+  id: number,
+  name: string,
+  price: number,
+  available: number,
+  imgUrl: string,
+  categories: string[]
+}
+
+interface DisplayDataProps {
+  data: mealItem[];
+}
+
+
+const Menu: React.FC<DisplayDataProps> = ({data}) => {
+    
+
+
+
   return (
-    <div>
-      {/* <MenuItem meals={meals} title="All items!"/> */}
-    </div>
+    <section id='menu' className='container section'>
+      <div className='options-container'>
+        <h3>Choose Dishes</h3>
+        <select name="" id="options">
+          <option>Dine in</option>
+          <option>To go</option>
+          <option>Delivery</option>
+        </select>
+      </div>
+      <div id='menu-grid'>
+        {data.map(item => (
+          <div className='menu-item' key={item.id}>
+            <MenuItem {...item}/>
+          </div>
+        ))}
+      </div>
+    </section>
   )
 }
 
