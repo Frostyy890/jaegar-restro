@@ -38,9 +38,9 @@ html {
 }
 
 .container {
-  max-width: 1024px;
+  max-width: 960px;
   padding-left: 15px;
-  padding-right: 15px;
+  padding-right: 15x;
 }
 
 .grid {

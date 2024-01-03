@@ -12,6 +12,7 @@
     border-bottom-right-radius: 15px;
 }
 
+
 .side-item {
     // background: var(--main-dark-bg2);  
     width: 117px;
@@ -21,16 +22,17 @@
     align-items: center;
     justify-content: center;
     transition: .3s;
+    position: relative;
         a {
-            padding: 8px 12px;
-            border-radius: 10px;
+            padding: 10px 12px;
+            border-radius: 8px;
             transition: .3s;
         }
         a img {
             filter: invert(75%) sepia(80%) saturate(2057%) hue-rotate(310deg) brightness(90%) contrast(104%);
             transition: .3s;
         }
-        &:hover {
+        &:not(.logo):hover {
             background: var(--main-dark-bg);
             a {
                 background: var(--main-light);
@@ -38,8 +40,8 @@
             a img {
                 filter: invert(100%) sepia(15%) saturate(2%) hue-rotate(155deg) brightness(116%) contrast(100%)
             }
-    }
-
+        }
+          
 }
 
 

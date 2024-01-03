@@ -1,19 +1,27 @@
 .header {
-    width: 100%;
-    height: 140px;
     display: flex;
     flex-direction: column;
+    width: 100%;
     position: fixed;
+    top: 0;
     background: var(--main-dark-bg);
     color: var(--font-white);
-    padding-bottom: 20px;
-    font-weight: 500;
+    padding-top: 5px;
+    padding-bottom: 10px;
     z-index: 100;
+}
+
+
+.name {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 39.2px;
 }
 
 .date {
     color: var(--font-lighter);
     font-size: 16px;
+    line-height: 22.2px;
 }
 
 .top-container {
@@ -21,45 +29,22 @@
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    margin: 15px 0;
+    padding: 15px 0;
 }
 
-.nav-link {
-    text-decoration: none;
-    color: var(--font-white);
-    font-size: var(--small-font);
-    transition: .3s;
-
-    &:hover {
-        color: var(--main-light);
-    }
-}
 
 
 
 .search-input {
-    padding: 15px 10px;
+    padding: 14px 30px;
     background: var(--main-dark-bg);
     border: 2px solid var(--main-dark-line);
-    border-radius: 5px;
+    border-radius: 8px;
     color: var(--font-light);
     font-size: var(--small-font);
+    outline: none
 }
 
 select {
     padding: 7px 14px;
-}
-
-.nav-list {
-    width: 80%;
-    height: 100%;
-    padding: 10px;
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.nav-container {
-    border-bottom: 2px solid var(--main-dark-line);
 }

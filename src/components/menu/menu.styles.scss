@@ -6,8 +6,14 @@
     color: var(--font-white);
 }
 
+#menu {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
 #options {
-    border-radius: 4px;
+    border-radius: 8px;
     padding: 15px 12px;
     border-color: var(--main-dark-line);
     background: var(--main-dark-bg2);
@@ -17,6 +23,6 @@
 #menu-grid {
     margin-top: 100px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(4, minmax(210px, 1fr));
+    // gap: 5px;
 }

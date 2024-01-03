@@ -1,0 +1,45 @@
+.custom-selector {
+    position: relative;
+    width: 100px;
+    height: 50px;
+    // background: var(--main-dark-bg2)
+    .options-list {
+        cursor: pointer;
+        position: absolute;
+        display: none;
+        list-style: none;
+        background: var(--main-dark-bg2);
+        width: 100%;
+        border-top: none;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        text-align: center;
+        line-height: 30px;
+        max-height: 120px;
+        overflow-y: auto;
+        z-index: 99;
+    
+        li{
+            padding: 0 14px;
+            &:hover {
+                background: var(--main-dark-line);
+        }
+    }
+    }
+
+
+    .open {
+        display: block;
+    }
+}
+
+.selector-header {
+    display: flex;
+    background: var(--main-dark-bg2);
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--main-dark-line);
+    cursor: pointer;
+    align-items: center;
+}
+
