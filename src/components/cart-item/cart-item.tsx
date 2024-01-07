@@ -2,9 +2,8 @@ import React from "react";
 import "./cart-item.styles.scss";
 import Delete from "../../assets/icons/Trash.svg";
 import { formatCurrency } from "../../utils/formatCurrency";
-import { removeFromCart } from "../shopping-cart/cart-slice";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../app/store";
+import { removeFromCart } from "../../redux/cart/cart-slice";
+import { useAppDispatch } from "../../redux/store/store";
 import { useToast } from "@chakra-ui/react";
 
 interface cartItemProps {
@@ -16,7 +15,7 @@ interface cartItemProps {
 }
 
 const CartItem: React.FC<cartItemProps> = ({ id, price, name, quantity }) => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const toast = useToast();
   const deleteItem = (itemId: number) => {
     dispatch(removeFromCart(itemId));

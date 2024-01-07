@@ -1,14 +1,14 @@
 import React from "react";
 import "./navbar.styles.scss";
-import { useDispatch } from "react-redux";
-import { filterByCategory } from "../menu/meal-slice";
+import { useAppDispatch } from "../../redux/store/store";
+import { filterByCategory } from "../../redux/meals/meal-slice";
 
 interface NavbarProps {
   categories: string[];
 }
 
 const Navbar: React.FC<NavbarProps> = ({ categories }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleClick = (category: string) => {
     dispatch(filterByCategory(category));

@@ -1,24 +1,21 @@
 import React from "react";
 import "./shopping-cart.styles.scss";
 import { formatCurrency } from "../../utils/formatCurrency";
-import { useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../app/store";
-import { useDispatch } from "react-redux";
+import { useAppSelector } from "../../redux/store/store";
+import { useAppDispatch } from "../../redux/store/store";
 import CartItem from "../cart-item/cart-item";
-import { setSelectedOption } from "../menu/options-slice";
+import { setSelectedOption } from "../../redux/options/options-slice";
 
 const ShoppingCart = () => {
   const options = ["Dine in", "To go", "Delivery"];
-  const dispatch = useDispatch<AppDispatch>();
-  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+  const dispatch = useAppDispatch();
+  const cartItems = useAppSelector((state) => state.cart.cartItems);
   console.log(cartItems);
   const total = cartItems.reduce(
     (result, item) => result + (item?.price || 0) * (item?.quantity || 0),
     0
   );
-  const selectedOption = useSelector(
-    (state: RootState) => state.option.selectedOption
-  );
+  const selectedOption = useAppSelector((state) => state.option.selectedOption);
 
   const handleClick = (buttonOpt: string) => {
     dispatch(setSelectedOption(buttonOpt));
@@ -40,9 +37,6 @@ const ShoppingCart = () => {
               {button}
             </button>
           ))}
-          {/* <button type="button">Dine in</button>
-          <button type="button">To go</button>
-          <button type="button">Delivery</button> */}
         </div>
         <div className="header-titles">
           <p className="title">Item</p>

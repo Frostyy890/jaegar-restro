@@ -6,8 +6,8 @@ import axios from "axios";
 import Navbar from "../../components/navbar/navbar";
 import ShoppingCart from "../../components/shopping-cart/shopping-cart";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../app/store";
-import { fetchMeals } from "../../components/menu/meal-slice";
+import { AppDispatch, RootState } from "../../redux/store/store";
+import { fetchMeals } from "../../redux/meals/meal-slice";
 
 interface Category {
   id: number;
@@ -17,17 +17,6 @@ interface Category {
 const HomePage: React.FC = () => {
   const baseUrl = "http://localhost:7000/";
   const [categories, setCategories] = useState<Category[]>([]); // State to store categories
-  // const [selectedCategory, setSelectedCategory] = useState<string | null>(
-  //   "All"
-  // );
-
-  // const dispatch = useDispatch<AppDispatch>();
-  // const { dishes, loading, error } = useSelector(
-  //   (state: RootState) => state.meals
-  // );
-
-  // const [meals, setMeals] = useState(dishes);
-  // const [filteredMeals, setFilteredMeals] = useState(dishes);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -42,40 +31,17 @@ const HomePage: React.FC = () => {
         console.error("Error fetching categories:", error);
       }
     };
-
     // Fetch data using Axios and update state
 
     fetchCategories();
   }, []);
 
-  // const handleFilter = (filterValue: string) => {
-  //   setFilteredMeals(
-  //     meals.filter((meal) =>
-  //       meal.name.toLowerCase().includes(filterValue.toLowerCase())
-  //     )
-  //   );
-  // };
-
-  // const handleCategorySelect = (category: string) => {
-  //   setSelectedCategory(category);
-  //   if (category === "All") {
-  //     setFilteredMeals(meals);
-  //   } else {
-  //     setFilteredMeals(
-  //       meals.filter((meal) => meal.categories.includes(category))
-  //     );
-  //   }
-  // };
-
   return (
     <main className="main">
       <div>
-        <Header
-        // onFilter={handleFilter}
-        />
+        <Header />
         <Navbar
           categories={["All", ...categories.map((cat) => cat.category)]}
-          // onSelectCategory={handleCategorySelect}
         />
         <Menu />
       </div>

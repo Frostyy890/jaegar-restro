@@ -4,6 +4,11 @@
     align-items: center;
     justify-content: space-between;
     color: var(--font-white);
+
+    p {
+        font-size: 20px;
+        font-weight: 600;
+    }
 }
 
 #menu {

@@ -3,10 +3,10 @@ import "./menu.styles.scss";
 import axios from "axios";
 import MenuItem from "../menu-item/menu-item";
 import CustomSelector from "../../custom-components/styled-components/custom-selector";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../app/store";
-import { Meal, fetchMeals } from "./meal-slice";
-import { addToCart } from "../shopping-cart/cart-slice";
+import { useAppSelector } from "../../redux/store/store";
+import { useAppDispatch } from "../../redux/store/store";
+import { Meal, fetchMeals } from "../../redux/meals/meal-slice";
+import { addToCart } from "../../redux/cart/cart-slice";
 import { useToast } from "@chakra-ui/react";
 
 interface MealProps {
@@ -16,14 +16,14 @@ interface MealProps {
 const Menu: React.FC = () => {
   const options = ["Dine in", "To go", "Delivery"];
   const toast = useToast();
-  const dispatch = useDispatch<AppDispatch>();
-  const { filteredDishes, loading, error } = useSelector(
-    (state: RootState) => state.meals
+  const dispatch = useAppDispatch();
+  const { filteredDishes, loading, error } = useAppSelector(
+    (state) => state.meals
   );
 
   useEffect(() => {
     dispatch(fetchMeals());
-  }, []);
+  }, [dispatch]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -45,7 +45,7 @@ const Menu: React.FC = () => {
   return (
     <section id="menu" className="container section">
       <div className="options-container">
-        <h3>Choose Dishes</h3>
+        <p>Choose Dishes</p>
         <CustomSelector options={options} />
       </div>
       <div id="menu-grid">

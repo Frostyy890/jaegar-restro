@@ -42,17 +42,8 @@ const CartSlice = createSlice({
     },
     //Here our Payload is gonna be of number type because removing logic involves working with specifically with Meal's id
     removeFromCart: (state, action: PayloadAction<number>) => {
-      const id = action.payload
-      const existingItemIndex = state.cartItems.findIndex((item) => item.id = id)
-      if (existingItemIndex !== -1) {
-        const item = state.cartItems[existingItemIndex];
-        if(item.quantity > 1) {
-          item.quantity--;
-        } else {
-        state.cartItems.splice(existingItemIndex, 1)
-      }
-    }
-      console.log("Removed")
+      state.cartItems = state.cartItems.filter(item => item.id !== action.payload);  
+      console.log("Removed");
       // if an id of an item doesn't match with those that are supposed to be in the cart than that item is to be removed from the cart
     }
   },

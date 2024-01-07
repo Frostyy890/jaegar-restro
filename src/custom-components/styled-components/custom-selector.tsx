@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import "./custom-selector.styles.scss";
 import { RiArrowDropDownLine } from "react-icons/ri";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../redux/store/store";
 import { useSelector } from "react-redux";
-import { RootState } from "../../app/store";
-import { setSelectedOption } from "../../components/menu/options-slice";
+import { RootState } from "../../redux/store/store";
+import { setSelectedOption } from "../../redux/options/options-slice";
+import { useClickOutside } from "../../hooks/useClickOutside";
 
 interface CustomSelectorProps {
   options: string[];
 }
 
 const CustomSelector: React.FC<CustomSelectorProps> = ({ options }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const selectedOption = useSelector(
     (state: RootState) => state.option.selectedOption
   );
@@ -25,8 +26,12 @@ const CustomSelector: React.FC<CustomSelectorProps> = ({ options }) => {
     setIsOpen(false);
   };
 
+  const ref = useClickOutside(() => {
+    setIsOpen(false);
+  });
+
   return (
-    <div className="custom-selector">
+    <div className="custom-selector" ref={ref}>
       <div className="selector-header" onClick={() => setIsOpen(!isOpen)}>
         <span>
           <RiArrowDropDownLine style={{ width: "20px", height: "20px" }} />

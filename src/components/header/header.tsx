@@ -1,17 +1,11 @@
 import React, { useState, ChangeEvent, useEffect } from "react";
 import "./header.styles.scss";
 import { FiSearch } from "react-icons/fi";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { RootState } from "../../app/store";
-import { filterByName } from "../menu/meal-slice";
-
-interface headerProps {
-  onFilter: (filterValue: string) => void;
-}
+import { useAppDispatch } from "../../redux/store/store";
+import { filterByName } from "../../redux/meals/meal-slice";
 
 const Header: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [query, setQuery] = useState("");
 
   useEffect(() => {
@@ -30,11 +24,20 @@ const Header: React.FC = () => {
           <span className="date">{date.format(today)}</span>
         </div>
         <div className="input-col">
+          <FiSearch
+            style={{
+              width: "35px",
+              position: "absolute",
+              top: "42.5px",
+              zIndex: "99",
+            }}
+          />
           <input
             type="text"
             className="search-input"
             placeholder="Search for food, coffee, etc.."
             value={query}
+            // style={{ position: "relative" }}
             onChange={(e) => setQuery(e.target.value)}
           />
         </div>

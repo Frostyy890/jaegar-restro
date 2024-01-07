@@ -32,7 +32,7 @@
     width: 80%;
     height: 100%;
     height: 40px;
-    padding: 5px;
+    // padding: 5px;
     list-style: none;
     display: flex;
     flex-direction: row;
@@ -41,6 +41,8 @@
 
 .nav-container {
     border-bottom: 3px solid var(--main-dark-line);
+    padding: 0;
+    
 }
 
 .nav-item {
@@ -49,15 +51,16 @@
     &:hover {
         color: var(--main-light);
         transition: .4s;
-        // &::after  {
-        //     content: '';
-        //     left: -20px;
-        //     bottom: -7px;
-        //     position: absolute;
-        //     width: 100%;
-        //     height: 2px;
-        //     background: var(--main-light);
-        // }
+        &::after  {
+            content: '';
+            // left: -20px;
+            left: 0;
+            bottom: -2px;
+            position: absolute;
+            width: 60%;
+            height: 2px;
+            background: var(--main-light);
+        }
     }
     
 }

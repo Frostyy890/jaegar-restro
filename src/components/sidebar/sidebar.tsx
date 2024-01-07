@@ -8,22 +8,24 @@ const Sidebar = () => {
   return (
     <div>
       <aside className="aside">
-        <nav className="nav">
-          <ul className="side-list">
-            <li className="side-item logo">
-              <Link to="/">
-                <img src={Logo} alt="" />
+        {/* <nav className="nav"> */}
+        <ul className="side-list">
+          <li className="side-item logo">
+            <Link to="/">
+              <img src={Logo} alt="" />
+            </Link>
+          </li>
+          {sections.map((section) => (
+            <li key={section.id} className="side-item">
+              <Link to={section.link} className="side-link">
+                <span className="icon">
+                  <img src={section.imgUrl} alt="" />
+                </span>
               </Link>
             </li>
-            {sections.map((section) => (
-              <li key={section.id} className="side-item">
-                <Link to={section.link} className="side-link">
-                  <img src={section.imgUrl} alt="" />
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+          ))}
+        </ul>
+        {/* </nav> */}
       </aside>
     </div>
   );
