@@ -9,7 +9,7 @@ import LogOut from "../../assets/icons/Log Out.svg";
 const sections = [
   {
     id: 1,
-    link: "/",
+    link: "/homepage",
     imgUrl: Home,
   },
   {
@@ -37,11 +37,11 @@ const sections = [
     link: "/settings",
     imgUrl: Settings,
   },
-  {
-    id: 7,
-    link: "/logout",
-    imgUrl: LogOut,
-  },
+  // {
+  //   id: 7,
+  //   link: "/logout",
+  //   imgUrl: LogOut,
+  // },
 ];
 
 export default sections;

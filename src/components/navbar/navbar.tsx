@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import "./navbar.styles.scss";
-import { useAppDispatch } from "../../redux/store/store";
+import { useAppDispatch } from "../../redux/store";
 import { filterByCategory } from "../../redux/meals/meal-slice";
 
 interface NavbarProps {
@@ -9,9 +9,11 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ categories }) => {
   const dispatch = useAppDispatch();
+  const [active, setActive] = useState<number>(0);
 
-  const handleClick = (category: string) => {
+  const handleClick = (category: string, index: number) => {
     dispatch(filterByCategory(category));
+    setActive(index);
   };
   return (
     <nav id="navbar">
@@ -19,9 +21,9 @@ const Navbar: React.FC<NavbarProps> = ({ categories }) => {
         <ul className="nav-list">
           {categories.map((category, index) => (
             <li
-              className="nav-item"
+              className={`nav-item ${active === index ? "nav-active" : ""}`}
               key={index}
-              onClick={() => handleClick(category)}
+              onClick={() => handleClick(category, index)}
             >
               {category}
             </li>

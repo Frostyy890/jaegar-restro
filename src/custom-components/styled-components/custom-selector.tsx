@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./custom-selector.styles.scss";
 import { RiArrowDropDownLine } from "react-icons/ri";
-import { useAppDispatch } from "../../redux/store/store";
+import { useAppDispatch } from "../../redux/store";
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store/store";
+import { RootState } from "../../redux/store";
 import { setSelectedOption } from "../../redux/options/options-slice";
 import { useClickOutside } from "../../hooks/useClickOutside";
 

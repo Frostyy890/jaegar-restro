@@ -55,7 +55,10 @@
             filter: invert(75%) sepia(80%) saturate(2057%) hue-rotate(310deg) brightness(90%) contrast(104%);
             transition: .3s;
         }
-        &:not(.logo):hover {
+    }
+
+    .active {
+        
             &::before {
                 content: "";
                 background: transparent;
@@ -89,6 +92,6 @@
             a .icon img {
                 filter: invert(100%) sepia(15%) saturate(2%) hue-rotate(155deg) brightness(116%) contrast(100%)
             }
-        }
+        
     }
 }

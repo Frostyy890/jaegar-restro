@@ -3,7 +3,7 @@ import "./cart-item.styles.scss";
 import Delete from "../../assets/icons/Trash.svg";
 import { formatCurrency } from "../../utils/formatCurrency";
 import { removeFromCart } from "../../redux/cart/cart-slice";
-import { useAppDispatch } from "../../redux/store/store";
+import { useAppDispatch } from "../../redux/store";
 import { useToast } from "@chakra-ui/react";
 
 interface cartItemProps {

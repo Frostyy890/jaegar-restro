@@ -61,21 +61,17 @@ const mealsSlice = createSlice({
         builder.addCase(fetchMeals.pending, (state) => {
             state.loading = true;
             state.error = null;
-            console.log("Pending");
         });
 
         builder.addCase(fetchMeals.fulfilled, (state, action) => {
             state.loading = false;
             state.dishes = action.payload;
             state.filteredDishes = action.payload;
-            console.log("Fulfilled");
-            console.log(state.dishes);
         });
 
         builder.addCase(fetchMeals.rejected, (state, action) => {
             state.loading = false;
             state.error = action.error.message || 'Unknown error';
-            console.log("Rejected");
         });
     },
 });  

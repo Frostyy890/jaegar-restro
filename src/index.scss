@@ -51,3 +51,23 @@ html {
   padding-top: 10rem;
   padding-bottom: 2rem;
 }
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--main-light);
+  border-radius: 10px;
+
+  &:hover {
+    background: #944e42;
+  }
+}
+
+

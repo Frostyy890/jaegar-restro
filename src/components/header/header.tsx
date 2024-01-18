@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent, useEffect } from "react";
 import "./header.styles.scss";
 import { FiSearch } from "react-icons/fi";
-import { useAppDispatch } from "../../redux/store/store";
+import { useAppDispatch } from "../../redux/store";
 import { filterByName } from "../../redux/meals/meal-slice";
 
 const Header: React.FC = () => {

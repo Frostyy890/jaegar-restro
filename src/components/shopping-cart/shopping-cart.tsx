@@ -1,8 +1,8 @@
 import React from "react";
 import "./shopping-cart.styles.scss";
 import { formatCurrency } from "../../utils/formatCurrency";
-import { useAppSelector } from "../../redux/store/store";
-import { useAppDispatch } from "../../redux/store/store";
+import { useAppSelector } from "../../redux/store";
+import { useAppDispatch } from "../../redux/store";
 import CartItem from "../cart-item/cart-item";
 import { setSelectedOption } from "../../redux/options/options-slice";
 
@@ -10,7 +10,6 @@ const ShoppingCart = () => {
   const options = ["Dine in", "To go", "Delivery"];
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector((state) => state.cart.cartItems);
-  console.log(cartItems);
   const total = cartItems.reduce(
     (result, item) => result + (item?.price || 0) * (item?.quantity || 0),
     0

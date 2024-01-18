@@ -48,8 +48,25 @@
 .nav-item {
     line-height: 20px;
     position: relative;
-    &:hover {
-        color: var(--main-light);
+    // &:hover {
+    //     color: var(--main-light);
+    //     transition: .4s;
+    //     &::after  {
+    //         content: '';
+    //         // left: -20px;
+    //         left: 0;
+    //         bottom: -2px;
+    //         position: absolute;
+    //         width: 60%;
+    //         height: 2px;
+    //         background: var(--main-light);
+    //     }
+    // }
+    
+}
+
+.nav-active {
+    color: var(--main-light);
         transition: .4s;
         &::after  {
             content: '';
@@ -61,6 +78,4 @@
             height: 2px;
             background: var(--main-light);
         }
-    }
-    
 }

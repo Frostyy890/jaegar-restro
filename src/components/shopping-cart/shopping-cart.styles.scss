@@ -69,16 +69,18 @@
 // Cart-Body
 
 .cart-body {
+    height: 420px;
     display: flex;
     flex-direction: column;
     padding-top: 22px;
-    height: 420px;
+    padding-bottom: 22px;
+    padding-right: 10px;
     border-bottom: 2px solid var(--main-dark-line);
     gap: 40px;
     overflow-y: scroll;
 
     &::-webkit-scrollbar {
-        display: none;
+        width: 5px;
     }
     
     .cart-item {
@@ -86,7 +88,7 @@
         height: 100px;
         display: flex;
         flex-direction: column;
-        padding-bottom: 15px;
+        padding-bottom: 20px;
         color: var(--font-white);
         gap: 10px;
         cursor: pointer;
