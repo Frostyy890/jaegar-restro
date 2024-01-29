@@ -4,8 +4,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/homepage/homepage";
 import Sidebar from "./components/sidebar/sidebar";
 import Dashboard from "./pages/dashboard/dashboard";
-import Login from "pages/login/login";
-import Signup from "pages/sign-up/sign-up";
+import Login from "./pages/login/login";
+import Signup from "./pages/sign-up/sign-up";
 import { useAppSelector } from "./redux/store";
 
 function App() {

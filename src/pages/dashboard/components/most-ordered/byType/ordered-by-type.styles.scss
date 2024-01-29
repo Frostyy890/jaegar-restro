@@ -1,0 +1,21 @@
+.byType {
+    display: flex;
+    width: 380px;
+    height: 300px;
+    border-radius: 8px;
+    padding: 20px 0px 40px 0px;
+    flex-direction: column;
+    background: var(--main-dark-bg2);
+    color: var(--font-white);
+    .byType-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 24px 15px 24px;
+        border-bottom: 3px solid var(--main-dark-bg);
+        p {
+            font-size: 20px;
+            font-weight: 600;
+        }
+    }
+}

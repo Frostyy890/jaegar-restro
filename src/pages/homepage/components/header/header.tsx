@@ -1,8 +1,8 @@
 import React, { useState, ChangeEvent, useEffect } from "react";
 import "./header.styles.scss";
 import { FiSearch } from "react-icons/fi";
-import { useAppDispatch } from "../../redux/store";
-import { filterByName } from "../../redux/meals/meal-slice";
+import { useAppDispatch } from "../../../../redux/store";
+import { filterByName } from "../../../../redux/meals/meal-slice";
 
 const Header: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -20,7 +20,7 @@ const Header: React.FC = () => {
     <header className="header container">
       <div className="top-container container">
         <div className="name-date-col">
-          <h3 className="name">Jaegar Restro</h3>
+          <h3 className="page-name">Jaegar Restro</h3>
           <span className="date">{date.format(today)}</span>
         </div>
         <div className="input-col">

@@ -1,5 +1,26 @@
 .dashboard {
     display: flex;
-    color: var(--font-white);
-    font-size: 20px;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cards-container {
+    width: 920px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.side-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }

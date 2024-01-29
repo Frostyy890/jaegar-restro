@@ -1,6 +1,6 @@
 .custom-selector {
     position: relative;
-    width: 100px;
+    width: 120px;
     height: 50px;
     // background: var(--main-dark-bg2)
     .options-list {
@@ -16,12 +16,17 @@
         max-height: 120px;
         overflow-y: auto;
         z-index: 99;
-    
+        
+        .selected {
+            display: none;
+        }
+
         li{
             padding: 0 14px;
             &:hover {
                 background: var(--main-dark-line);
         }
+
     }
     }
 
@@ -34,6 +39,8 @@
 .selector-header {
     display: flex;
     background: var(--main-dark-bg2);
+    font-size: 14px;
+    font-weight: 500;
     padding: 10px;
     border-radius: 8px;
     border: 1px solid var(--main-dark-line);

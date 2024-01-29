@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { StyledEngineProvider } from "@mui/material/styles";
 
 const theme = extendTheme({
   styles: {
@@ -25,9 +26,11 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <ChakraProvider theme={theme}>
-          <App />
-        </ChakraProvider>
+        <StyledEngineProvider injectFirst>
+          <ChakraProvider theme={theme}>
+            <App />
+          </ChakraProvider>
+        </StyledEngineProvider>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>

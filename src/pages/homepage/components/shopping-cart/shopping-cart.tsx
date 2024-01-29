@@ -1,23 +1,28 @@
 import React from "react";
 import "./shopping-cart.styles.scss";
-import { formatCurrency } from "../../utils/formatCurrency";
-import { useAppSelector } from "../../redux/store";
-import { useAppDispatch } from "../../redux/store";
-import CartItem from "../cart-item/cart-item";
-import { setSelectedOption } from "../../redux/options/options-slice";
+import { formatCurrency } from "../../../../utils/formatCurrency";
+import { useAppSelector } from "../../../../redux/store";
+import CartItem from "./cart-item/cart-item";
 
-const ShoppingCart = () => {
-  const options = ["Dine in", "To go", "Delivery"];
-  const dispatch = useAppDispatch();
+interface ShoppingCartProps {
+  options: string[];
+  selectedOption: string;
+  setSelectedOption: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const ShoppingCart: React.FC<ShoppingCartProps> = ({
+  options,
+  selectedOption,
+  setSelectedOption,
+}) => {
   const cartItems = useAppSelector((state) => state.cart.cartItems);
   const total = cartItems.reduce(
     (result, item) => result + (item?.price || 0) * (item?.quantity || 0),
     0
   );
-  const selectedOption = useAppSelector((state) => state.option.selectedOption);
 
-  const handleClick = (buttonOpt: string) => {
-    dispatch(setSelectedOption(buttonOpt));
+  const handleClick = (option: string) => {
+    setSelectedOption(option);
   };
 
   return (
@@ -26,14 +31,14 @@ const ShoppingCart = () => {
       <div className="cart-header">
         <p className="order-num">Orders #34562</p>
         <div className="header-buttons">
-          {options.map((button) => (
+          {options.map((option, index) => (
             <button
-              key={button}
+              key={index}
               type="button"
-              className={selectedOption === button ? "active" : ""}
-              onClick={() => handleClick(button)}
+              className={selectedOption === option ? "active" : ""}
+              onClick={() => handleClick(option)}
             >
-              {button}
+              {option}
             </button>
           ))}
         </div>
