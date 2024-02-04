@@ -1,15 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { Meal } from "../meals/meals-actions";
 
-interface Meal {
-  id: number;
-  name: string;
-  price: number;
-  available: number;
-  imgUrl: string;
-  categories: string[];
-  quantity: number;
-}
 
 interface cartState {
   cartItems: Meal[];
@@ -29,7 +21,7 @@ const CartSlice = createSlice({
     //Here we're creating functions that are going to add/remove items from the cart
     addToCart: (state, action: PayloadAction<Meal>) => {
       // const {id, name, price, available, imgUrl, categories } = action.payload;
-      const itemInCart = state.cartItems.find((item) => item.id === action.payload.id)
+      const itemInCart = state.cartItems.find((item) => item._id === action.payload._id)
       if (itemInCart) {
         if (itemInCart.quantity !== undefined) {
           itemInCart.quantity++;
@@ -41,8 +33,8 @@ const CartSlice = createSlice({
       console.log("Added")
     },
     //Here our Payload is gonna be of number type because removing logic involves working with specifically with Meal's id
-    removeFromCart: (state, action: PayloadAction<number>) => {
-      state.cartItems = state.cartItems.filter(item => item.id !== action.payload);  
+    removeFromCart: (state, action: PayloadAction<string>) => {
+      state.cartItems = state.cartItems.filter(item => item._id !== action.payload);  
       console.log("Removed");
       // if an id of an item doesn't match with those that are supposed to be in the cart than that item is to be removed from the cart
     }

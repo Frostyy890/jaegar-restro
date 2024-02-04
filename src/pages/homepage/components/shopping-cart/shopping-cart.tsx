@@ -54,7 +54,7 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
       {/* Cart-Body */}
       <div className="cart-body">
         {cartItems.map((cartItem) => (
-          <div className="cart-item" key={cartItem.id}>
+          <div className="cart-item" key={cartItem._id}>
             {/* Item-Details */}
             <CartItem {...cartItem} />
           </div>

@@ -43,6 +43,7 @@
 .table-body {
     display: flex;
     flex-direction: column;
+    text-align: center;
     padding: 20px;
     overflow-y: scroll;
 }
@@ -55,7 +56,7 @@
 
 .table-body__row-item {
     display: flex;
-    width: 225px;    
+    width: 220px;    
     justify-content: center;
     text-align: center;
     align-items: center;   
@@ -76,17 +77,17 @@
 
 .table-item__status-completed {
     background: #089067;
-    color: #50D1AA; 
+    color: #01eaa4; 
 }
 
 .table-item__status-pending {
-    background: #504eaf;
-    color: #9290FE;
+    background: #b6773c;
+    color: #ffc907;
 }
 
 .table-item__status-preparing {
-    background: #b6773c;
-    color: #FFB572;
+    background: #5957b5;
+    color: #282764;
 }
 
 .table-item__profile-pic {

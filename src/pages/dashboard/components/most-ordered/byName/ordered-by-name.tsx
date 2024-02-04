@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./ordered-by-name.styles.scss";
-import { RiArrowDropDownLine } from "react-icons/ri";
+import { KeyboardArrowDown } from "@mui/icons-material";
 import CustomSelect from "../../../../../custom-components/styled-components/custom-select";
 
 const OrderedByName = () => {
@@ -14,9 +14,7 @@ const OrderedByName = () => {
           selectedOption={selectedOption}
           setSelectedOption={setSelectedOption}
           options={options}
-          icon={
-            <RiArrowDropDownLine style={{ width: "20px", height: "20px" }} />
-          }
+          icon={<KeyboardArrowDown style={{ width: "30px", height: "25px" }} />}
         />
       </div>
       {/* Body */}

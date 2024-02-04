@@ -4,11 +4,13 @@ import axios from "axios";
 import MenuItem from "./menu-item/menu-item";
 import { useAppSelector } from "../../../../redux/store";
 import { useAppDispatch } from "../../../../redux/store";
-import { Meal, fetchMeals } from "../../../../redux/meals/meal-slice";
+import { Meal } from "../../../../redux/meals/meals-actions";
 import { addToCart } from "../../../../redux/cart/cart-slice";
 import { useToast } from "@chakra-ui/react";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import CustomSelect from "../../../../custom-components/styled-components/custom-select";
+import { KeyboardArrowDown } from "@mui/icons-material";
+import { getMeals } from "../../../../redux/meals/meals-actions";
 
 interface MenuProps {
   options: string[];
@@ -28,15 +30,14 @@ const Menu: React.FC<MenuProps> = ({
   );
 
   useEffect(() => {
-    dispatch(fetchMeals());
+    dispatch(getMeals());
   }, [dispatch]);
 
   if (loading) {
+    console.log("Loading...");
     return <div>Loading...</div>;
   }
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+
   const addItem = (meal: Meal) => {
     dispatch(addToCart(meal));
     toast({
@@ -56,21 +57,23 @@ const Menu: React.FC<MenuProps> = ({
           selectedOption={selectedOption}
           setSelectedOption={setSelectedOption}
           options={options}
-          icon={
-            <RiArrowDropDownLine style={{ width: "20px", height: "20px" }} />
-          }
+          icon={<KeyboardArrowDown style={{ width: "30px", height: "25px" }} />}
         />
       </div>
       <div id="menu-grid">
-        {filteredDishes.map((item) => (
-          <div
-            className="menu-item"
-            onClick={() => addItem(item)}
-            key={item.id}
-          >
-            <MenuItem {...item} />
-          </div>
-        ))}
+        {error ? (
+          <div className="err__msg">ERROR: {error}</div>
+        ) : (
+          filteredDishes.map((item) => (
+            <div
+              className="menu-item"
+              onClick={() => addItem(item)}
+              key={item._id}
+            >
+              <MenuItem {...item} />
+            </div>
+          ))
+        )}
       </div>
     </section>
   );

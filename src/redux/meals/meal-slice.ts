@@ -1,15 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
-export interface Meal {
-    id: number;
-    name: string;
-    price: number;
-    available: number;
-    imgUrl: string;
-    categories: string[];
-    quantity: number;
-  }
+import { Meal, getMeals } from "./meals-actions";
 
   interface MealsState {
     dishes: Meal[],
@@ -28,14 +19,6 @@ const initialState: MealsState = {
 }
 
 
-const baseUrl = "http://localhost:7000/";
-export const fetchMeals = createAsyncThunk<Meal[]>("meals/fetchMeals", async () => {
-  const response = await axios.get<Meal[]>(`${baseUrl}dishes`);
-  return response.data;
-}
-);
-
-
 const mealsSlice = createSlice({
     name: 'dishes',
     initialState,
@@ -49,7 +32,11 @@ const mealsSlice = createSlice({
             };
         },
         filterByCategory: (state, action: PayloadAction<string>) => {
-            const filteredDishes = state.dishes.filter((dish) => dish.categories.includes(action.payload))
+           const filteredDishes = state.dishes
+           .filter(dish => {return dish.categories
+            .some(category => category.name
+                .includes(action.payload))})
+            // const filteredDishes = state.dishes.filter((dish) => dish.categories.includes(action.payload))
             return {
                 ...state,
                 filteredDishes:
@@ -58,18 +45,18 @@ const mealsSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(fetchMeals.pending, (state) => {
+        builder.addCase(getMeals.pending, (state) => {
             state.loading = true;
             state.error = null;
         });
 
-        builder.addCase(fetchMeals.fulfilled, (state, action) => {
+        builder.addCase(getMeals.fulfilled, (state, action) => {
             state.loading = false;
             state.dishes = action.payload;
             state.filteredDishes = action.payload;
         });
 
-        builder.addCase(fetchMeals.rejected, (state, action) => {
+        builder.addCase(getMeals.rejected, (state, action) => {
             state.loading = false;
             state.error = action.error.message || 'Unknown error';
         });

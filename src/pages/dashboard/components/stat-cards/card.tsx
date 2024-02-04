@@ -5,6 +5,14 @@ import UpArrow from "../../../../assets/icons/Arrow - Up.svg";
 import { formatCurrency } from "../../../../utils/formatCurrency";
 
 const StatCard = () => {
+  const data = [
+    {
+      icon: "",
+      stats: 23456,
+      trend: { value: 12.4, icon: "" },
+    },
+  ];
+
   return (
     <div className="stat-card">
       <div className="cardHeader">

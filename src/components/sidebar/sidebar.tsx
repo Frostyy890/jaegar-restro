@@ -16,19 +16,6 @@ import { logout } from "../../redux/auth/auth-slice";
 
 const Sidebar = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  // const [active, setActive] = useState<number>(() => {
-  //   const storedActive = localStorage.getItem("active");
-  //   return storedActive ? parseInt(storedActive, 10) : 1;
-  // });
-
-  // useEffect(() => {
-  //   localStorage.setItem("active", active.toString());
-  // }, [active]);
-  // const chosenSection = sections.find((section) => section.id);
-  // const resolvedPath = useResolvedPath(`${chosenSection?.link}`);
-  // const isActive = useMatch({ path: resolvedPath.pathname, end: true });
-
   const Logout = () => {
     dispatch(logout());
   };

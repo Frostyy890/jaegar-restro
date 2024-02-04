@@ -7,17 +7,17 @@ import { useAppDispatch } from "../../../../../redux/store";
 import { useToast } from "@chakra-ui/react";
 
 interface cartItemProps {
-  id: number;
+  _id: string;
   name: string;
   price: number;
   quantity: number;
   imgUrl: string;
 }
 
-const CartItem: React.FC<cartItemProps> = ({ id, price, name, quantity }) => {
+const CartItem: React.FC<cartItemProps> = ({ _id, price, name, quantity }) => {
   const dispatch = useAppDispatch();
   const toast = useToast();
-  const deleteItem = (itemId: number) => {
+  const deleteItem = (itemId: string) => {
     dispatch(removeFromCart(itemId));
     toast({
       title: "Removed Item",
@@ -49,7 +49,7 @@ const CartItem: React.FC<cartItemProps> = ({ id, price, name, quantity }) => {
       {/* Item-Notes and Delete Button */}
       <div className="notes-del">
         <input type="text" className="note" placeholder="Order Note..." />
-        <button type="button" onClick={() => deleteItem(id)}>
+        <button type="button" onClick={() => deleteItem(_id)}>
           <img src={Delete} alt="" />
         </button>
       </div>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./table.styles.scss";
 import { formatCurrency } from "../../../../utils/formatCurrency";
-import { RiArrowDropDownLine } from "react-icons/ri";
+import TuneRoundedIcon from "@mui/icons-material/TuneRounded";
 import CustomSelect from "../../../../custom-components/styled-components/custom-select";
 
 interface Customer {
@@ -18,8 +18,8 @@ interface Order {
 }
 
 const DynamicTable: React.FC = () => {
-  const options = ["Filter Order"];
-  const [selectedOption, setSelectedOption] = useState<string>(options[0]);
+  const options = ["Pending", "Completed", "Preparing"];
+  const [selectedOption, setSelectedOption] = useState<string>("Filter Order");
   const columns = [
     { id: 1, name: "Customer" },
     { id: 2, name: "Menu" },
@@ -127,7 +127,9 @@ const DynamicTable: React.FC = () => {
             setSelectedOption={setSelectedOption}
             options={options}
             icon={
-              <RiArrowDropDownLine style={{ width: "20px", height: "20px" }} />
+              <TuneRoundedIcon
+                style={{ textAlign: "center", height: "25px" }}
+              />
             }
           />
         </div>

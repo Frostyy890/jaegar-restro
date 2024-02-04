@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./ordered-by-type.styles.scss";
-import { ResponsivePie } from "@nivo/pie";
-import { RiArrowDropDownLine } from "react-icons/ri";
+import { ResponsiveRadialBar } from "@nivo/radial-bar";
 import CustomSelect from "../../../../../custom-components/styled-components/custom-select";
+import { KeyboardArrowDown } from "@mui/icons-material";
+import data from "./data";
 
 const OrderedByType = () => {
   const options = ["Today", "Week ago", "Month ago"];
@@ -15,12 +16,10 @@ const OrderedByType = () => {
           selectedOption={selectedOption}
           setSelectedOption={setSelectedOption}
           options={options}
-          icon={
-            <RiArrowDropDownLine style={{ width: "20px", height: "20px" }} />
-          }
+          icon={<KeyboardArrowDown style={{ width: "30px", height: "25px" }} />}
         />
       </div>
-      <div className="byType-body">{/* <ResponsivePie data={data} /> */}</div>
+      <div className="byType-body"></div>
     </div>
   );
 };
