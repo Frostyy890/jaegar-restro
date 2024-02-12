@@ -1,16 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense } from "react";
 import "./sidebar.styles.scss";
-import {
-  Link,
-  Outlet,
-  useNavigate,
-  useMatch,
-  useResolvedPath,
-} from "react-router-dom";
+import { Link, Outlet, useMatch, useResolvedPath } from "react-router-dom";
 import Logo from "../../assets/logos/Logo.svg";
 import LogOut from "../../assets/icons/Log Out.svg";
 import sections from "./section.data";
-import { useCookies } from "react-cookie";
 import { useAppDispatch } from "../../redux/store";
 import { logout } from "../../redux/auth/auth-slice";
 
@@ -44,7 +37,9 @@ const Sidebar = () => {
           </li>
         </ul>
       </aside>
-      <Outlet />
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };

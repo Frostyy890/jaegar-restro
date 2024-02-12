@@ -20,7 +20,6 @@ export interface Meal {
 
 const baseURL = "http://localhost:4000/";
 export const getMeals = createAsyncThunk<Meal[]>("meals/getMeals", async () => {
-    const response = await axios.get<Meal[]>(`${baseURL}meals/meals`);
-    console.log(response.data);
+    const response = await axios.get<Meal[]>(`${baseURL}meals/meals`, {headers: {authorization: localStorage.getItem("token")}});
     return response.data;
 })

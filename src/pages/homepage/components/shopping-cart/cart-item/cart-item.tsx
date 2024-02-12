@@ -3,8 +3,9 @@ import "./cart-item.styles.scss";
 import Delete from "../../../../../assets/icons/Trash.svg";
 import { formatCurrency } from "../../../../../utils/formatCurrency";
 import { removeFromCart } from "../../../../../redux/cart/cart-slice";
-import { useAppDispatch } from "../../../../../redux/store";
+import { useAppDispatch, useAppSelector } from "../../../../../redux/store";
 import { useToast } from "@chakra-ui/react";
+import axios from "axios";
 
 interface cartItemProps {
   _id: string;
@@ -15,17 +16,33 @@ interface cartItemProps {
 }
 
 const CartItem: React.FC<cartItemProps> = ({ _id, price, name, quantity }) => {
-  const dispatch = useAppDispatch();
   const toast = useToast();
+  const dispatch = useAppDispatch();
+  const baseURL = "http://localhost:4000/";
+  const customerId = localStorage.getItem("userId");
+  const { token } = useAppSelector((state) => state.auth);
+
+  const removeItem = async (productId: string) => {
+    await axios
+      .delete(`${baseURL}users/${customerId}/cartItems/${productId}`, {
+        headers: { authorization: token },
+      })
+      .then((res) => {
+        console.log(res.data);
+        toast({
+          title: res.data.message,
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+          position: "top-right",
+        });
+        return res.data;
+      })
+      .catch((err) => console.error(err));
+  };
   const deleteItem = (itemId: string) => {
     dispatch(removeFromCart(itemId));
-    toast({
-      title: "Removed Item",
-      status: "error",
-      duration: 3000,
-      isClosable: true,
-      position: "top-right",
-    });
+    removeItem(itemId);
   };
   return (
     <div className="item">

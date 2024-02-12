@@ -8,9 +8,11 @@ import Table from "./components/table/table";
 
 const Dashboard = () => {
   return (
-    <div className="dashboard main">
-      <div className="container main-container">
-        <DashboardHeader />
+    <div id="dashboard">
+      <div className="main-container">
+        <div className="dashboard__header">
+          <DashboardHeader />
+        </div>
         <div className="cards-container">
           <StatCard />
           <StatCard />

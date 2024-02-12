@@ -11,14 +11,18 @@ const HomePage: React.FC = () => {
   const [selectedOption, setSelectedOption] = useState<string>(options[0]);
   return (
     <main className="main">
-      <div>
-        <Header />
-        <Navbar />
-        <Menu
-          options={options}
-          selectedOption={selectedOption}
-          setSelectedOption={setSelectedOption}
-        />
+      <div className="homepage__body">
+        <div className="homepage__header">
+          <Header />
+          <Navbar />
+        </div>
+        <div className="homepage__menu">
+          <Menu
+            options={options}
+            selectedOption={selectedOption}
+            setSelectedOption={setSelectedOption}
+          />
+        </div>
       </div>
       <ShoppingCart
         options={options}

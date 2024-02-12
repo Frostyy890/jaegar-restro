@@ -1,3 +1,20 @@
 .main {
     margin-left: 120px;
 }
+
+.homepage__body {
+    display: flex;
+    flex-direction: column;
+    width: 920px;
+}
+
+.homepage__menu {
+    margin-top: 180px;
+}
+
+.homepage__header {
+    background: var(--main-dark-bg);
+    position: fixed;
+    width: 920px;
+    z-index: 9999;
+}

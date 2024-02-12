@@ -10,10 +10,8 @@ import { userInfo } from "../../redux/auth/auth-slice";
 const Signup = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { message, success, loading, user } = useAppSelector(
-    (state) => state.auth
-  );
-  // const toast = useToast();
+  const toast = useToast();
+  const { loading, error, message } = useAppSelector((state) => state.auth);
   const [inputValue, setInputValue] = useState<userInfo>({
     email: "",
     password: "",
@@ -31,6 +29,16 @@ const Signup = () => {
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(registerUser(inputValue));
+    if (error) {
+      toast({
+        title: "ERROR",
+        description: message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        position: "top-right",
+      });
+    }
 
     setInputValue({
       ...inputValue,
@@ -50,10 +58,10 @@ const Signup = () => {
       <form className="auth-form" onSubmit={handleSubmit}>
         <div>
           <input
-            type="email"
-            name="email"
-            value={email}
-            placeholder="Enter your email"
+            type="text"
+            name="username"
+            value={username}
+            placeholder="Enter your username"
             onChange={handleOnChange}
             className="form-input"
             required
@@ -61,10 +69,10 @@ const Signup = () => {
         </div>
         <div>
           <input
-            type="text"
-            name="username"
-            value={username}
-            placeholder="Enter your username"
+            type="email"
+            name="email"
+            value={email}
+            placeholder="Enter your email"
             onChange={handleOnChange}
             className="form-input"
             required

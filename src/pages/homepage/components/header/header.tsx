@@ -17,8 +17,8 @@ const Header: React.FC = () => {
     dateStyle: "full",
   });
   return (
-    <header className="header container">
-      <div className="top-container container">
+    <header className="header">
+      <div className="top-container">
         <div className="name-date-col">
           <h3 className="page-name">Jaegar Restro</h3>
           <span className="date">{date.format(today)}</span>
@@ -28,7 +28,7 @@ const Header: React.FC = () => {
             style={{
               width: "35px",
               position: "absolute",
-              top: "42.5px",
+              top: "44.5px",
               zIndex: "99",
             }}
           />

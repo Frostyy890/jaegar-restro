@@ -47,7 +47,7 @@ const DynamicTable: React.FC = () => {
       },
       menuItems: "Spicy seasoned seafood noodles",
       totalPayment: 30,
-      status: "Pending",
+      status: "Completed",
     },
     {
       id: 3,
@@ -69,7 +69,7 @@ const DynamicTable: React.FC = () => {
       },
       menuItems: "Spicy seasoned seafood noodles",
       totalPayment: 30,
-      status: "Completed",
+      status: "Preparing",
     },
     {
       id: 5,
@@ -80,7 +80,7 @@ const DynamicTable: React.FC = () => {
       },
       menuItems: "Spicy seasoned seafood noodles",
       totalPayment: 30,
-      status: "Completed",
+      status: "Pending",
     },
     {
       id: 6,

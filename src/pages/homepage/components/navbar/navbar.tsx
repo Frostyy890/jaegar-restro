@@ -18,7 +18,7 @@ const Navbar = () => {
   };
   return (
     <nav id="navbar">
-      <div className="nav-container container">
+      <div className="nav-container">
         <ul className="nav-list">
           <li
             className={`nav-item ${active === "default" ? "nav-active" : ""}`}

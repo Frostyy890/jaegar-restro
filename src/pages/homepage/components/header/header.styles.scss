@@ -2,26 +2,19 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    position: fixed;
-    top: 0;
-    background: var(--main-dark-bg);
     color: var(--font-white);
-    padding-top: 5px;
-    padding-bottom: 10px;
-    z-index: 100;
+    padding: 20px;
 }
 
 
 .page-name {
     font-size: 28px;
     font-weight: 600;
-    line-height: 39.2px;
 }
 
 .date {
     color: var(--font-lighter);
     font-size: 16px;
-    line-height: 22.2px;
 }
 
 .top-container {
@@ -29,11 +22,7 @@
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 0;
 }
-
-
-
 
 .search-input {
     position: relative;
@@ -44,8 +33,4 @@
     color: var(--font-light);
     font-size: var(--small-font);
     outline: none
-}
-
-select {
-    padding: 7px 14px;
 }

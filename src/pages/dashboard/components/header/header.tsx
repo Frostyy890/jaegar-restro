@@ -7,9 +7,9 @@ const DashboardHeader = () => {
     dateStyle: "full",
   });
   return (
-    <header className="dash-header container header nav-container">
+    <header className="dash__header">
       <div className="name-date-col">
-        <h3 className="page-name">Dashboard</h3>
+        <h3 className="page__name">Dashboard</h3>
         <span className="date">{date.format(today)}</span>
       </div>
     </header>

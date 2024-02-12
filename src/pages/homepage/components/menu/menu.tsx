@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./menu.styles.scss";
 import axios from "axios";
 import MenuItem from "./menu-item/menu-item";
@@ -7,7 +7,6 @@ import { useAppDispatch } from "../../../../redux/store";
 import { Meal } from "../../../../redux/meals/meals-actions";
 import { addToCart } from "../../../../redux/cart/cart-slice";
 import { useToast } from "@chakra-ui/react";
-import { RiArrowDropDownLine } from "react-icons/ri";
 import CustomSelect from "../../../../custom-components/styled-components/custom-select";
 import { KeyboardArrowDown } from "@mui/icons-material";
 import { getMeals } from "../../../../redux/meals/meals-actions";
@@ -33,24 +32,46 @@ const Menu: React.FC<MenuProps> = ({
     dispatch(getMeals());
   }, [dispatch]);
 
+  const baseURL = "http://localhost:4000/";
+  const customerId = localStorage.getItem("userId");
+  const { token } = useAppSelector((state) => state.auth);
+
+  const sendItem = async (meal: Meal) => {
+    const productId = meal._id;
+    await axios
+      .post(
+        `${baseURL}users/${customerId}/cartItems`,
+        { productId },
+        {
+          headers: { authorization: token },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        toast({
+          title: res.data.message,
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          position: "top-right",
+        });
+        return res.data;
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const addItem = (meal: Meal) => {
+    dispatch(addToCart(meal));
+    sendItem(meal);
+  };
+
   if (loading) {
     console.log("Loading...");
     return <div>Loading...</div>;
   }
 
-  const addItem = (meal: Meal) => {
-    dispatch(addToCart(meal));
-    toast({
-      title: "Added item",
-      status: "success",
-      duration: 3000,
-      isClosable: true,
-      position: "top-right",
-    });
-  };
-
   return (
-    <section id="menu" className="container section">
+    <section id="menu">
       <div className="options-container">
         <p>Choose Dishes</p>
         <CustomSelect
@@ -66,7 +87,7 @@ const Menu: React.FC<MenuProps> = ({
         ) : (
           filteredDishes.map((item) => (
             <div
-              className="menu-item"
+              className={item.available === 0 ? "item__out-of-stock" : ""}
               onClick={() => addItem(item)}
               key={item._id}
             >

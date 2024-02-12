@@ -1,22 +1,32 @@
-.dashboard {
+#dashboard {
     display: flex;
     justify-content: space-between;
     padding: 15px;
+    margin-left: 120px;
 }
 
+
+
 .main-container {
+    width: 920px;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.cards-container {
+.dashboard__header {
     width: 920px;
+    position: fixed;
+    z-index: 999;
+    border-bottom: 2px solid var(--main-dark-line);
+}
+
+.cards-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-top: 10px;
+    margin-top: 130px;
 }
 
 .side-container {
