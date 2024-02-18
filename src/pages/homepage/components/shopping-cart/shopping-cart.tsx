@@ -16,10 +16,10 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
   setSelectedOption,
 }) => {
   const cartItems = useAppSelector((state) => state.cart.cartItems);
-  const total = cartItems.reduce(
-    (result, item) => result + (item?.price || 0) * (item?.quantity || 0),
-    0
-  );
+  const total = cartItems.reduce((result, item) => {
+    const subtotal = item.productId.price * item.quantity;
+    return result + subtotal;
+  }, 0);
 
   const handleClick = (option: string) => {
     setSelectedOption(option);
@@ -53,10 +53,9 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
 
       {/* Cart-Body */}
       <div className="cart-body">
-        {cartItems.map((cartItem) => (
-          <div className="cart-item" key={cartItem._id}>
-            {/* Item-Details */}
-            <CartItem {...cartItem} />
+        {cartItems.map((item, index) => (
+          <div className="cart-item" key={index}>
+            <CartItem {...item} />
           </div>
         ))}
       </div>

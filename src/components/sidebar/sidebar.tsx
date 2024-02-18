@@ -1,16 +1,54 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import "./sidebar.styles.scss";
 import { Link, Outlet, useMatch, useResolvedPath } from "react-router-dom";
 import Logo from "../../assets/logos/Logo.svg";
 import LogOut from "../../assets/icons/Log Out.svg";
 import sections from "./section.data";
-import { useAppDispatch } from "../../redux/store";
-import { logout } from "../../redux/auth/auth-slice";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
+import { item, logout } from "../../redux/auth/auth-slice";
+import axios from "axios";
 
 const Sidebar = () => {
   const dispatch = useAppDispatch();
+  const { cartItems } = useAppSelector((state) => state.cart);
+  const savedCartItems: any[] | undefined = [];
+  for (const item of cartItems) {
+    const cartItem = {
+      productId: item.productId._id,
+      quantity: item.quantity,
+    };
+    savedCartItems.push(cartItem);
+  }
+  const baseURL = "http://localhost:4000/";
+  const customerId = localStorage.getItem("userId");
+  const { token } = useAppSelector((state) => state.auth);
+  const saveItems = async () => {
+    axios
+      .post(`${baseURL}users/${customerId}/cartItems`, savedCartItems, {
+        headers: { authorization: token },
+      })
+      .then((res) => {
+        console.log(res.data);
+        return res.data;
+      })
+      .catch((err) => console.error(err));
+  };
   const Logout = () => {
-    dispatch(logout());
+    if (
+      localStorage.getItem("cartItems") ===
+      localStorage.getItem("initialCartItems")
+    ) {
+      dispatch(logout());
+    } else {
+      if (
+        window.confirm("Do you want to save changes in your cart?") === true
+      ) {
+        saveItems();
+        dispatch(logout());
+      } else {
+        dispatch(logout());
+      }
+    }
   };
   return (
     <div>

@@ -1,41 +1,52 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { item } from "../auth/auth-slice";
 import { Meal } from "../meals/meals-actions";
 
-interface cartState {
-  cartItems: Meal[];
+interface CartState {
+  cartItems: item[];
 }
 
+const cartItemsJSON = localStorage.getItem("cartItems");
+const updateStoredCartItems = (updatedCartItems: item[]) => {
+  localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+};
 
-const initialState: cartState = {
-  cartItems: [],
+const initialState: CartState = {
+  cartItems: cartItemsJSON ? JSON.parse(cartItemsJSON) : [],
 };
 
 const CartSlice = createSlice({
-  name: "cart", //any name works, as long as it makes sense
-  initialState, //accepts an initialState of the cart
+  name: "cart",
+  initialState,
   reducers: {
-    //basically actions, functions to manipulate cart items e.g: add/remove items
-    //PayloadAction<Meal> means we want our action to inherit the types of our Meal items
-    //Here we're creating functions that are going to add/remove items from the cart
-    addToCart: (state, action: PayloadAction<Meal>) => {
-      const itemInCart = state.cartItems.find((item) => item._id === action.payload._id)
+    setCartItems: (state, action: PayloadAction<item[]>) => {
+      state.cartItems = action.payload;
+    },
+    addCartItem: (state, action: PayloadAction<Meal>) => {
+      const itemInCart = state.cartItems.find(
+        (item) => item.productId._id === action.payload._id
+      );
       if (itemInCart) {
         if (itemInCart.quantity !== undefined) {
           itemInCart.quantity++;
+          updateStoredCartItems([...state.cartItems]);
         }
       } else {
-        state.cartItems.push({...action.payload, quantity: 1})
+        state.cartItems.push({ productId: action.payload, quantity: 1 });
+        updateStoredCartItems([...state.cartItems]);
       }
-       //means we want our cartItems array accept an item that shares our payload's types as in Meal
     },
-    //Here our Payload is gonna be of number type because removing logic involves working with specifically with Meal's id
-    removeFromCart: (state, action: PayloadAction<string>) => {
-      state.cartItems = state.cartItems.filter(item => item._id !== action.payload);  
-      // if an id of an item doesn't match with those that are supposed to be in the cart than that item is to be removed from the cart
-    }
+    removeCartItem: (state, action: PayloadAction<string>) => {
+      state.cartItems = state.cartItems.filter(
+        (item) => item.productId._id !== action.payload
+      );
+      updateStoredCartItems(
+        state.cartItems.filter((item) => item.productId._id !== action.payload)
+      );
+    },
   },
 });
 
-export const { addToCart, removeFromCart } = CartSlice.actions;
+export const { setCartItems, addCartItem, removeCartItem } = CartSlice.actions;
 
 export default CartSlice.reducer;

@@ -5,7 +5,7 @@ import MenuItem from "./menu-item/menu-item";
 import { useAppSelector } from "../../../../redux/store";
 import { useAppDispatch } from "../../../../redux/store";
 import { Meal } from "../../../../redux/meals/meals-actions";
-import { addToCart } from "../../../../redux/cart/cart-slice";
+import { addCartItem } from "../../../../redux/cart/cart-slice";
 import { useToast } from "@chakra-ui/react";
 import CustomSelect from "../../../../custom-components/styled-components/custom-select";
 import { KeyboardArrowDown } from "@mui/icons-material";
@@ -32,37 +32,15 @@ const Menu: React.FC<MenuProps> = ({
     dispatch(getMeals());
   }, [dispatch]);
 
-  const baseURL = "http://localhost:4000/";
-  const customerId = localStorage.getItem("userId");
-  const { token } = useAppSelector((state) => state.auth);
-
-  const sendItem = async (meal: Meal) => {
-    const productId = meal._id;
-    await axios
-      .post(
-        `${baseURL}users/${customerId}/cartItems`,
-        { productId },
-        {
-          headers: { authorization: token },
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-        toast({
-          title: res.data.message,
-          status: "success",
-          duration: 3000,
-          isClosable: true,
-          position: "top-right",
-        });
-        return res.data;
-      })
-      .catch((err) => console.error(err));
-  };
-
   const addItem = (meal: Meal) => {
-    dispatch(addToCart(meal));
-    sendItem(meal);
+    dispatch(addCartItem(meal));
+    toast({
+      title: "Item added",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+      position: "top-right",
+    });
   };
 
   if (loading) {

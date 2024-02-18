@@ -13,7 +13,6 @@ export interface Meal {
     available: number,
     imgUrl: string,
     categories: Category[],
-    quantity: number
 }
 
 

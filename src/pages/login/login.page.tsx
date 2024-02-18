@@ -1,18 +1,12 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./login.styles.scss";
-import { useToast } from "@chakra-ui/react";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { loginUser } from "../../redux/auth/auth-actions";
 
 const Login = () => {
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { success, message, loading, user } = useAppSelector(
-    (state) => state.auth
-  );
-  const toast = useToast();
+  const { loading } = useAppSelector((state) => state.auth);
   const [inputValue, setInputValue] = useState({
     email: "",
     password: "",
@@ -25,6 +19,7 @@ const Login = () => {
       [name]: value,
     });
   };
+
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(loginUser(inputValue));
